@@ -1,0 +1,22 @@
+{
+    auto_https off
+    admin off
+}
+
+:7860 {
+    # JupyterLab on /lab
+    handle_path /lab* {
+        reverse_proxy localhost:8888 {
+            header_up Host {upstream_hostport}
+        }
+    }
+
+    # Home Assistant on /
+    handle {
+        reverse_proxy localhost:8123 {
+            header_up Host {upstream_hostport}
+            header_up X-Forwarded-For {remote_host}
+            header_up X-Forwarded-Proto {scheme}
+        }
+    }
+}
