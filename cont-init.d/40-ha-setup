@@ -2,30 +2,62 @@
 set -e
 echo "[HA Space Setup] Running startup setup..."
 
-# 1. Ensure custom component for auto-rebuild is available
+# 1. Copy custom component if needed
 if [ ! -d "/config/custom_components/ha_space_updater" ]; then
     echo "[HA Space Setup] Installing ha_space_updater component..."
     mkdir -p /config/custom_components
     cp -r /usr/src/ha_space_updater /config/custom_components/
 fi
 
-# 2. Configure HA for reverse proxy (Caddy on port 7860)
+# 2. Configure HA for reverse proxy + JupyterLab sidebar panel
 CONFIG_FILE="/config/configuration.yaml"
+REQUIRED_LINE="use_x_forwarded_for: true"
+
 if [ -f "$CONFIG_FILE" ]; then
     if ! grep -q "use_x_forwarded_for" "$CONFIG_FILE"; then
-        echo -e "\n# Reverse proxy config for HF Spaces (Caddy)\nhttp:\n  use_x_forwarded_for: true\n  trusted_proxies:\n    - 127.0.0.1\n    - ::1\n" >> "$CONFIG_FILE"
-        echo "[HA Space Setup] Added reverse proxy config to configuration.yaml"
-    fi
-else
-    cat > "$CONFIG_FILE" << 'HAYAML'
-# Home Assistant configuration for HF Spaces
+        cat >> "$CONFIG_FILE" << 'HAEOF'
+
 http:
   use_x_forwarded_for: true
   trusted_proxies:
     - 127.0.0.1
     - ::1
-HAYAML
-    echo "[HA Space Setup] Created configuration.yaml with reverse proxy config"
+
+panel_iframe:
+  jupyter:
+    title: "JupyterLab"
+    icon: "mdi:console"
+    url: "/lab"
+HAEOF
+        echo "[HA Space Setup] Added reverse proxy + JupyterLab panel"
+    elif ! grep -q "panel_iframe" "$CONFIG_FILE"; then
+        cat >> "$CONFIG_FILE" << 'PANELEOF'
+
+panel_iframe:
+  jupyter:
+    title: "JupyterLab"
+    icon: "mdi:console"
+    url: "/lab"
+PANELEOF
+        echo "[HA Space Setup] Added JupyterLab panel"
+    else
+        echo "[HA Space Setup] Config already complete"
+    fi
+else
+    cat > "$CONFIG_FILE" << 'CONFEOF'
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 127.0.0.1
+    - ::1
+
+panel_iframe:
+  jupyter:
+    title: "JupyterLab"
+    icon: "mdi:console"
+    url: "/lab"
+CONFEOF
+    echo "[HA Space Setup] Created configuration.yaml"
 fi
 
 echo "[HA Space Setup] Setup complete."
