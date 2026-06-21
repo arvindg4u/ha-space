@@ -1,0 +1,13 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "HA Space Updater",
+        "description": "Enter your Hugging Face Space ID (e.g., `username/space-name`)",
+        "data": {"space_id": "Space ID"}
+      }
+    },
+    "error": {"invalid_space_id": "Must be `username/space-name`"},
+    "abort": {"already_configured": "Already configured"}
+  }
+}

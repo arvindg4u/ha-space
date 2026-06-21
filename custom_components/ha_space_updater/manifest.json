@@ -1,0 +1,12 @@
+{
+  "domain": "ha_space_updater",
+  "name": "HA Space Updater",
+  "codeowners": [],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/arvindg4u/ha-space",
+  "integration_type": "entity",
+  "iot_class": "cloud_polling",
+  "requirements": ["huggingface_hub>=0.20.0"],
+  "version": "1.0.0"
+}

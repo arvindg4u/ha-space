@@ -1,0 +1,10 @@
+#!/usr/bin/with-contenv bash
+set -e
+echo "[HA Space Setup] Running startup setup..."
+if [ ! -d "/config/custom_components/ha_space_updater" ]; then
+    echo "[HA Space Setup] Installing ha_space_updater component..."
+    mkdir -p /config/custom_components
+    cp -r /usr/src/ha_space_updater /config/custom_components/
+    echo "[HA Space Setup] Component installed."
+fi
+echo "[HA Space Setup] Setup complete."

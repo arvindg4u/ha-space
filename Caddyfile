@@ -4,14 +4,11 @@
 }
 
 :7860 {
-    # JupyterLab on /lab
     handle_path /lab* {
         reverse_proxy localhost:8888 {
             header_up Host {upstream_hostport}
         }
     }
-
-    # Home Assistant on /
     handle {
         reverse_proxy localhost:8123 {
             header_up Host {upstream_hostport}
