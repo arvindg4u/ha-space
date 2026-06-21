@@ -1,10 +1,31 @@
 #!/usr/bin/with-contenv bash
 set -e
 echo "[HA Space Setup] Running startup setup..."
+
+# 1. Ensure custom component for auto-rebuild is available
 if [ ! -d "/config/custom_components/ha_space_updater" ]; then
     echo "[HA Space Setup] Installing ha_space_updater component..."
     mkdir -p /config/custom_components
     cp -r /usr/src/ha_space_updater /config/custom_components/
-    echo "[HA Space Setup] Component installed."
 fi
+
+# 2. Configure HA for reverse proxy (Caddy on port 7860)
+CONFIG_FILE="/config/configuration.yaml"
+if [ -f "$CONFIG_FILE" ]; then
+    if ! grep -q "use_x_forwarded_for" "$CONFIG_FILE"; then
+        echo -e "\n# Reverse proxy config for HF Spaces (Caddy)\nhttp:\n  use_x_forwarded_for: true\n  trusted_proxies:\n    - 127.0.0.1\n    - ::1\n" >> "$CONFIG_FILE"
+        echo "[HA Space Setup] Added reverse proxy config to configuration.yaml"
+    fi
+else
+    cat > "$CONFIG_FILE" << 'HAYAML'
+# Home Assistant configuration for HF Spaces
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 127.0.0.1
+    - ::1
+HAYAML
+    echo "[HA Space Setup] Created configuration.yaml with reverse proxy config"
+fi
+
 echo "[HA Space Setup] Setup complete."
