@@ -1,0 +1,17 @@
+{
+  "providers": {
+    "opencode-free": {
+      "baseUrl": "https://opencode.ai/zen/v1",
+      "apiKey": "sk-9MHgBALigYug9WbjW4U0M4Sfh7hwgzTgboYB3kF87rOJMBrHyTqoZFroXbYnLBd9",
+      "api": "openai-completions",
+      "models": [
+        {
+          "id": "mimo-v2.5-free",
+          "name": "mimo-v2.5-free",
+          "contextWindow": 128000,
+          "maxTokens": 8192
+        }
+      ]
+    }
+  }
+}

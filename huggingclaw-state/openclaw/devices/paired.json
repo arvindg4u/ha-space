@@ -1,0 +1,81 @@
+{
+  "82358f57a4fc876fa3eeceb87c23d55a4a8b0c1b0bf14533c55a16bf725a0f7c": {
+    "deviceId": "82358f57a4fc876fa3eeceb87c23d55a4a8b0c1b0bf14533c55a16bf725a0f7c",
+    "publicKey": "it4HlvJLk4FSPe9meG-l6PPtrBdwsukvVV1p8pag4sc",
+    "platform": "linux",
+    "clientId": "cli",
+    "clientMode": "cli",
+    "role": "operator",
+    "roles": [
+      "operator"
+    ],
+    "scopes": [
+      "operator.pairing"
+    ],
+    "approvedScopes": [
+      "operator.pairing"
+    ],
+    "tokens": {
+      "operator": {
+        "token": "6S14i3WIYt-yU1DxDLhZZbzGJaK66yKwMmXIyD5b91o",
+        "role": "operator",
+        "scopes": [
+          "operator.pairing"
+        ],
+        "createdAtMs": 1781955099573
+      }
+    },
+    "createdAtMs": 1781955099573,
+    "approvedAtMs": 1781955099573,
+    "lastSeenAtMs": 1781976916470,
+    "lastSeenReason": "connect"
+  },
+  "e2c93d41b2ec7c7f4f150eb5da880f5412f2ac2e823d7a9312c1c0afcf352a72": {
+    "deviceId": "e2c93d41b2ec7c7f4f150eb5da880f5412f2ac2e823d7a9312c1c0afcf352a72",
+    "publicKey": "1zZ-cZgUg-dLdeSr_MTPXUl6upTSbO038Ofses2WVz4",
+    "platform": "Linux armv81",
+    "clientId": "openclaw-control-ui",
+    "clientMode": "webchat",
+    "role": "operator",
+    "roles": [
+      "operator"
+    ],
+    "scopes": [
+      "operator.admin",
+      "operator.read",
+      "operator.write",
+      "operator.approvals",
+      "operator.pairing"
+    ],
+    "approvedScopes": [
+      "operator.admin",
+      "operator.read",
+      "operator.write",
+      "operator.approvals",
+      "operator.pairing"
+    ],
+    "tokens": {
+      "operator": {
+        "token": "dzTk-p7_riXXbCL4mH1hRUO7Im1l_3Ik7rI5whGLxtE",
+        "role": "operator",
+        "scopes": [
+          "operator.admin",
+          "operator.approvals",
+          "operator.pairing",
+          "operator.read",
+          "operator.write"
+        ],
+        "issuer": {
+          "kind": "shared-gateway-auth",
+          "generation": "O4OqPxXDTJzAlrc-zbTRSba2ZG3bgVKdMkaXAV1gpqE"
+        },
+        "createdAtMs": 1781976916591,
+        "rotatedAtMs": 1781976924085
+      }
+    },
+    "createdAtMs": 1781976916591,
+    "approvedAtMs": 1781976916591,
+    "lastSeenAtMs": 1781977051731,
+    "lastSeenReason": "connect"
+  }
+}

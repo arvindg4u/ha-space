@@ -1,0 +1,189 @@
+{
+  "gateway": {
+    "mode": "local",
+    "port": 7860,
+    "bind": "lan",
+    "auth": {
+      "token": "4f2fdce07f7f2b0462acc9a36cd9027d138860ddb9d3c970763367a7d4fa1a5c"
+    },
+    "controlUi": {
+      "allowInsecureAuth": true,
+      "basePath": "/app",
+      "dangerouslyDisableDeviceAuth": true,
+      "allowedOrigins": [
+        "https://arvindlab-huggingclaw.hf.space"
+      ]
+    },
+    "trustedProxies": [
+      "127.0.0.1/8",
+      "::1/128",
+      "10.0.0.0/8",
+      "172.16.0.0/12",
+      "192.168.0.0/16"
+    ]
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "botToken": "8504327676:AAG_IQptfDNKQtApx9AfGr2j0m6z1BRMKXo",
+      "commands": {
+        "native": true
+      },
+      "timeoutSeconds": 60,
+      "streaming": {
+        "mode": "partial",
+        "preview": {
+          "toolProgress": true,
+          "commandText": "status"
+        }
+      },
+      "pollingStallThresholdMs": 180000,
+      "apiRoot": "https://telegram-worker-proxy.rvndkaswan.workers.dev/telegram",
+      "retry": {
+        "attempts": 5,
+        "minDelayMs": 800,
+        "maxDelayMs": 30000,
+        "jitter": 0.2
+      },
+      "dmPolicy": "allowlist",
+      "allowFrom": [
+        "6355505568"
+      ]
+    }
+  },
+  "plugins": {
+    "entries": {
+      "lmstudio": {
+        "enabled": false
+      },
+      "xai": {
+        "enabled": false
+      },
+      "browser": {
+        "enabled": false
+      },
+      "telegram": {
+        "enabled": true
+      },
+      "google": {
+        "enabled": true
+      }
+    },
+    "allow": [
+      "google",
+      "mistral"
+    ],
+    "deny": [
+      "lmstudio",
+      "xai"
+    ]
+  },
+  "logging": {
+    "level": "info",
+    "consoleLevel": "warn",
+    "consoleStyle": "compact"
+  },
+  "agents": {
+    "defaults": {
+      "model": "opencode-free/mimo-v2.5-free",
+      "models": {
+        "google/gemini-3.1-flash-lite": {},
+        "google/gemini-3.5-flash": {},
+        "google/gemini-3-flash-preview": {},
+        "google/gemma-4-31b-it": {},
+        "googl/gemini-2.5-flash": {}
+      }
+    }
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "opencode-free": {
+        "baseUrl": "https://opencode.ai/zen/v1",
+        "apiKey": "sk-EjhLHv0k2tefvT7ikhsCdgNpKxurZGvJ0ZXco0qhP78LBB8uc4Tn1csHH8wHHVLP",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "mimo-v2.5-free",
+            "name": "mimo-v2.5-free",
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          }
+        ]
+      }
+    }
+  },
+  "browser": {
+    "enabled": false
+  },
+  "mcp": {
+    "servers": {
+      "web-search": {
+        "url": "https://open-web-search-2oih.onrender.com/mcp",
+        "transport": "streamable-http",
+        "enabled": true
+      },
+      "youtube": {
+        "command": "npx",
+        "args": [
+          "-y",
+          "@kirbah/mcp-youtube"
+        ],
+        "env": {
+          "YOUTUBE_API_KEY": "AIzaSyDLR02Z06roT6jV6x4ywQVR85j67jf6m6E"
+        },
+        "enabled": true
+      }
+    }
+  },
+  "tools": {
+    "web": {
+      "search": {
+        "enabled": false
+      }
+    }
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.6.8",
+    "lastTouchedAt": "2026-06-20T18:24:33.657Z"
+  },
+  "skills": {
+    "entries": {
+      "1password": {
+        "enabled": false
+      },
+      "apple-notes": {
+        "enabled": false
+      },
+      "apple-reminders": {
+        "enabled": false
+      },
+      "bear-notes": {
+        "enabled": false
+      },
+      "blogwatcher": {
+        "enabled": false
+      },
+      "blucli": {
+        "enabled": false
+      },
+      "camsnap": {
+        "enabled": false
+      }
+    }
+  },
+  "wizard": {
+    "lastRunAt": "2026-06-20T18:22:05.144Z",
+    "lastRunVersion": "2026.6.8",
+    "lastRunCommand": "configure",
+    "lastRunMode": "local"
+  },
+  "auth": {
+    "profiles": {
+      "google:default": {
+        "provider": "google",
+        "mode": "api_key"
+      }
+    }
+  }
+}

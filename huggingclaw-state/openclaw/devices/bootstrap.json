@@ -1,0 +1,23 @@
+{
+  "8nIajUSq8fpJfUc9qNLkFFUr8L571iSmcuW0LfKRegA": {
+    "token": "8nIajUSq8fpJfUc9qNLkFFUr8L571iSmcuW0LfKRegA",
+    "ts": 1781975152340,
+    "profile": {
+      "roles": [
+        "node",
+        "operator"
+      ],
+      "scopes": [
+        "operator.approvals",
+        "operator.read",
+        "operator.talk.secrets",
+        "operator.write"
+      ]
+    },
+    "redeemedProfile": {
+      "roles": [],
+      "scopes": []
+    },
+    "issuedAtMs": 1781975152340
+  }
+}

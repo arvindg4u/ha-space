@@ -1,0 +1,20 @@
+{
+  "0e675761-28a5-4662-ba9d-df7fcd8b105b": {
+    "requestId": "0e675761-28a5-4662-ba9d-df7fcd8b105b",
+    "deviceId": "82358f57a4fc876fa3eeceb87c23d55a4a8b0c1b0bf14533c55a16bf725a0f7c",
+    "publicKey": "it4HlvJLk4FSPe9meG-l6PPtrBdwsukvVV1p8pag4sc",
+    "platform": "linux",
+    "clientId": "cli",
+    "clientMode": "probe",
+    "role": "operator",
+    "roles": [
+      "operator"
+    ],
+    "scopes": [
+      "operator.read"
+    ],
+    "silent": false,
+    "isRepair": true,
+    "ts": 1781980190251
+  }
+}
