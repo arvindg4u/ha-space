@@ -1,5 +1,6 @@
 #!/usr/bin/with-contenv bash
 JUPYTER_TOKEN="${JUPYTER_TOKEN:-huggingface}"
-exec jupyter lab --port=8888 --ip=0.0.0.0 --no-browser --notebook-dir=/config \
+exec jupyter lab --port=8888 --ip=0.0.0.0 --no-browser \
+  --notebook-dir=/config --allow-root \
   --ServerApp.token="${JUPYTER_TOKEN}" --ServerApp.password='' \
   --ServerApp.base_url='/lab' --ServerApp.allow_origin='*'
