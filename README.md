@@ -5,6 +5,7 @@ colorFrom: blue
 colorTo: green
 sdk: docker
 app_port: 7860
+startup_duration_timeout: "15m"
 ---
 
 # Home Assistant on Hugging Face Spaces
@@ -50,7 +51,7 @@ git push hf main
 
 | Endpoint | Description |
 |----------|-------------|
-| `/` | Home Assistant (loading page → auto-redirects) |
+| `/` | Home Assistant (auto-redirects to setup) |
 | `/lab` | JupyterLab terminal & file manager |
 | `/healthz` | Health check endpoint |
 
@@ -75,7 +76,7 @@ This triggers a Space rebuild with the latest Home Assistant Core.
 ```
 Browser → HF Spaces Proxy → Caddy (:7860)
                               ├── /healthz → respond OK
-                              ├── / → landing page (static)
+                              ├── / → landing page (auto-redirects to HA)
                               ├── /lab* → JupyterLab (:8888)
                               └── /* → Home Assistant (:8123)
 ```
