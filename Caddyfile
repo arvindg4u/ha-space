@@ -4,22 +4,30 @@
 }
 
 :7860 {
-    # Health check endpoint - HF Spaces health checker needs a quick 200
+    # 1. Health check endpoint - immediate 200 for HF Spaces
     handle /healthz {
         respond "OK" 200
     }
 
-    # JupyterLab - preserve /lab prefix (Jupyter uses base_url=/lab)
-    handle /lab* {
-        reverse_proxy localhost:8888 {
-            header_up Host {upstream_hostport}
-        }
+    # 2. Landing page at root - served directly by Caddy (200 OK for health check)
+    #    JS auto-redirects to HA onboarding or dashboard once ready
+    handle / {
+        root * /usr/share/caddy
+        file_server
     }
 
-    # Home Assistant - everything else
+    # 3. JupyterLab with base_url=/lab
+    #    Match /lab exactly AND everything under /lab/
+    @jupyter {
+        path /lab /lab/*
+    }
+    handle @jupyter {
+        reverse_proxy localhost:8888
+    }
+
+    # 4. Everything else → Home Assistant (API, frontend assets, onboarding, etc.)
     handle {
         reverse_proxy localhost:8123 {
-            header_up Host {upstream_hostport}
             header_up X-Forwarded-For {remote_host}
             header_up X-Forwarded-Proto {scheme}
         }

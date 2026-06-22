@@ -5,6 +5,10 @@ RUN pip3 install --no-cache-dir jupyterlab notebook
 RUN pip3 install --no-cache-dir --no-deps huggingface_hub
 RUN curl -sL "https://caddyserver.com/api/download?os=linux&arch=amd64" -o /usr/bin/caddy && chmod +x /usr/bin/caddy
 
+# Landing page for HF health check + HA loading screen
+RUN mkdir -p /usr/share/caddy
+COPY index.html /usr/share/caddy/index.html
+
 COPY Caddyfile /etc/caddy/Caddyfile
 COPY s6-services/caddy/run   /etc/services.d/caddy/run
 COPY s6-services/jupyter/run /etc/services.d/jupyter/run
