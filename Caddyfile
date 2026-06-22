@@ -4,21 +4,19 @@
 }
 
 :7860 {
-    # Health check endpoint - HF Spaces health checker needs a 200
-    @health path /healthz
-    handle @health {
-        resp "OK"
+    # Health check endpoint - HF Spaces health checker needs a quick 200
+    handle /healthz {
+        respond "OK" 200
     }
 
-    # JupyterLab - use handle (NOT handle_path) to preserve /lab prefix
-    # JupyterLab is configured with base_url='/lab' so it needs the full path
+    # JupyterLab - preserve /lab prefix (Jupyter uses base_url=/lab)
     handle /lab* {
         reverse_proxy localhost:8888 {
             header_up Host {upstream_hostport}
         }
     }
 
-    # Home Assistant - everything else goes to HA
+    # Home Assistant - everything else
     handle {
         reverse_proxy localhost:8123 {
             header_up Host {upstream_hostport}
